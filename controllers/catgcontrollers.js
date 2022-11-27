@@ -92,7 +92,7 @@ exports.categoryValidate=async (req,res,next)=>{
   const categoryDetails = await Category.find();
   res.locals.categoryDetails = categoryDetails;
   
-  try {
+  try {    
    
     if (!req.body.thumbnail || !req.body.catgname) {
      
