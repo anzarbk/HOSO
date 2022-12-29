@@ -64,11 +64,11 @@ module.exports.renderHome = async (req, res) => {
   if (categoryDetails.length){
   const menCategoryObj = categoryDetails.find((el) => el.name === "MEN");
   const womenCategoryObj = categoryDetails.find((el) => el.name === "WOMEN");
-   menProducts = await ProductModel.find({category: menCategoryObj._id})
+  res.locals.menProducts = await ProductModel.find({category: menCategoryObj._id})
     .sort({ createdAt: -1 })
     .populate("category")
     .limit(7)
-   womenProducts = await ProductModel.find({category: womenCategoryObj._id})
+    res.locals.womenProducts = await ProductModel.find({category: womenCategoryObj._id})
     .sort({ createdAt: -1 })
     .populate("category")
     .limit(7)
@@ -76,8 +76,8 @@ module.exports.renderHome = async (req, res) => {
 
   }
 
-  res.locals.menProducts = menProducts 
-  res.locals.womenProducts = womenProducts 
+  // res.locals.menProducts = menProducts 
+  // res.locals.womenProducts = womenProducts 
   const banner = await Banner.find();
     res.render("user/index", {
     categoryDetails,
