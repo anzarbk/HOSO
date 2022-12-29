@@ -13,10 +13,13 @@ exports.renderCart = async (req, res) => {
     );
     console.log("🚀 ~ file: cartcontrollers.js:14 ~ exports.renderCart= ~ cart", cart)
     // adding availability on cart
+    if(cart){
     cart.items.forEach((el) => {
       el.isAvailable = el.product.quantity >= el.quantity;
     });
+  }
     res.locals.cart = cart;
+
     console.log("🚀 ~ file: commonControllers.js:116 ~ exports.renderCart= ~ cart", cart)
   }
   const categoryDetails = await Category.find({});
