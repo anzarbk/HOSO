@@ -1,0 +1,193 @@
+<% let message = locals.message || null %>
+<% let banner = locals.banner || null %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('partial/admin-head.ejs') %>
+  <body
+    class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light"
+    id="body"
+  >
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <!-- LEFT MAIN SIDEBAR -->
+      <%- include('partial/admin-sidebar.ejs') %>
+      <!-- PAGE WRAPPER -->
+      <div class="ec-page-wrapper">
+        <!-- Header -->
+        <%- include('partial/admin-header.ejs') %> <
+        <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+          <div class="content">
+            <div
+              class="breadcrumb-wrapper d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <h1>Edit Banner</h1>
+                <p class="breadcrumbs">
+                  <span><a href="/admin/index">Home</a></span>
+                  <span><i class="mdi mdi-chevron-right"></i></span>Banner
+                </p>
+              </div>
+              <div>
+                <a href="/admin/list-banner" class="btn btn-primary">
+                  View All
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-default">
+                  <div class="card-header card-header-border-bottom">
+                    <h2>Edit Banner</h2>
+                  </div>
+
+                  <div class="card-body">
+                    <form
+                      action="/admin/edit-banner/<%=banner._id%>"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="row ec-vendor-uploads">
+                        <div class="col-lg-4">
+                          <div class="ec-vendor-img-upload">
+                            <div class="ec-vendor-main-img">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                  <input
+                                    type="file"
+                                    id="imageUpload"
+                                    class="ec-image-upload"
+                                    name="image"
+                                    value="<%= banner.image ? banner.image:'' %> "
+                                    accept="image/*"
+                                    src="/Images/banner/<%= banner.image %>"
+                                  />
+                                  <label for="imageUpload"
+                                    ><img
+                                      src="/assets/img/icons/edit.svg"
+                                      class="svg_img header_svg"
+                                      alt="edit"
+                                  /></label>
+                                </div>
+                                <div class="avatar-preview ec-preview">
+                                  <div class="imagePreview ec-div-preview">
+                                    <img
+                                      class="ec-image-preview"
+                                      src="/Images/banner/<%= banner.image %>"
+                                      alt="edit"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- </div> -->
+                        <div class="col-lg-8">
+                          <div class="ec-vendor-upload-detail">
+                            <!-- <form class="row g-3"> -->
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label"
+                                >Banner name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control slug-title"
+                                name="name"
+                                value="<%=banner.name%>"
+                                id="inputEmail4"  onkeyup="this.value = this.value.toLowerCase()"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label"
+                                >text header</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control slug-title"
+                                name='textHeader'
+                                value="<%=banner.textHeader%>"
+                                id="inputEmail4"
+                              />
+                            </div>
+                            <div class="col-md-12">
+                              <label class="form-label">text Content</label>
+                              <textarea
+                                class="form-control"
+                                rows="2"
+                                name="textContent"
+                              ><%=banner.textContent%></textarea>
+                            </div>
+                            <div class="col-md-8 mb-25">
+                              <label class="form-label">text Position</label>
+                              <div class="form-checkbox-box">
+                                <div class="form-check form-check-inline">
+                                  <input type="radio" name="textPosition" value="left" <%=banner.textPosition.includes('left')
+                                  ?'checked':'' %>>
+                                  <label>Left</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input type="radio" name="textPosition" value="right" <%=banner.textPosition.includes('right')
+                                  ?'checked':'' %>>
+                                  <label>Right</label>
+                                </div>
+                              </div>
+                              <% if (message){ %>
+                                <p class="text-danger"><%= message %> !</p>
+                                <% } %>
+                            </div>
+                            <div class="col-md-12">
+                              <button type="submit" class="btn btn-primary">
+                                Submit
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Content -->
+        </div>
+        <!-- End Content Wrapper -->
+
+        <!-- Footer -->
+        <footer class="footer mt-auto">
+          <div class="copyright bg-white">
+            <p>
+              Copyright &copy; <span id="ec-year"></span
+              ><a
+                class="text-primary"
+                href="https://themeforest.net/user/ashishmaraviya"
+                target="_blank"
+              >
+                HOSO Admin Dashboard</a
+              >. All Rights Reserved.
+            </p>
+          </div>
+        </footer>
+      </div>
+      <!-- End Page Wrapper -->
+    </div>
+    <!-- End Wrapper -->
+
+    <!-- Common Javascript -->
+    <script src="/assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/assets/plugins/jquery/jquery.notify.min.js"></script>
+    <script src="/assets/plugins/jquery/jquery.bundle.notify.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/plugins/tags-input/bootstrap-tagsinput.js"></script>
+    <script src="/assets/plugins/simplebar/simplebar.min.js"></script>
+    <script src="/assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+    <script src="/assets/plugins/slick/slick.min.js"></script>
+
+    <!-- Option Switcher -->
+    <script src="/assets/plugins/options-sidebar/optionswitcher.js"></script>
+
+    <!-- Ekka Custom -->
+    <script src="/assets/js/ekka.js"></script>
+  </body>
+</html>

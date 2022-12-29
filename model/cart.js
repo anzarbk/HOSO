@@ -26,9 +26,19 @@ const CartSchema = new mongoose.Schema(
         },
       },
     ],
+    subTotal:{
+      type: Number,
+    },
     totalAmount: {
       type: Number,
     },
+    discount:{
+      type: Number,
+    },
+    couponDiscount:{
+      type: Number,
+      default:0,
+    }
   },
   {
     timestamps: true,

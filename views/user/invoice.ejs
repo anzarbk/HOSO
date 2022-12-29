@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Fashi Template" />
+    <meta name="keywords" content="Fashi, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css Styles -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+  </head>
+
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <%- include('partial/user-header.ejs') %>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-text">
+              <a href="#"><i class="fa fa-home"></i> Home</a>
+              <span>Contact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Map Section Begin -->
+
+    <!-- Map Section Begin -->
+
+    <% let order = locals.order || null %>
+
+    <!-- Contact Section Begin -->
+    <div class="card">
+      <div class="card-body">
+        <div class="container mb-5 mt-3">
+          <div class="row d-flex align-items-baseline">
+            <div class="col-xl-9">
+              <p style="color: #7e8d9f; font-size: 14px">
+                Invoice &gt;&gt; <strong>ID: <%= order._id %> </strong>
+              </p>
+            </div>
+          </div>
+          <div class="container">
+            <div class="col-md-12">
+              <div class="text-center">
+                <p class="pt-2">HOSO</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-8">
+                <ul class="list-unstyled">
+                  <li class="text-muted">
+                    To:
+                    <span style="color: #8f8061"
+                      ><%= order.address.firstname +' '+ order.address.lastname
+                      %></span
+                    >
+                  </li>
+                  <li class="text-muted"><%= order.address.streetaddress %></li>
+                  <li class="text-muted"><%= order.address.town %></li>
+                  <li class="text-muted">
+                    <i class="fas fa-phone"></i><%= order.address.phone %>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-xl-4">
+                <p class="text-muted">Invoice</p>
+                <ul class="list-unstyled">
+                  <li class="text-muted">
+                    <i class="fas fa-circle" style="color: #8f8061"></i>
+                    <span class="fw-bold">ID:</span>#<%= order._id %>
+                  </li>
+                  <li class="text-muted">
+                    <i class="fas fa-circle" style="color: #8f8061"></i>
+                    <span class="fw-bold">Creation Date: </span><%=
+                    order.createdAt.toLocaleDateString() %>
+                  </li>
+                  <li class="text-muted">
+                    <i class="fas fa-circle" style="color: #8f8061"></i>
+                    <span class="me-1 fw-bold">Status:</span
+                    ><span class="badge bg-warning text-black fw-bold">
+                      <%= order.status %>
+                    </span>
+                  </li>
+                  <li class="text-muted">
+                    <i class="fas fa-circle" style="color: #8f8061"></i>
+                    <span class="me-1 fw-bold">Payment Method:</span
+                    ><span class="badge bg-warning text-black fw-bold">
+                      <%= order.paymentType %>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <%order.productDetails.forEach(el=>{%>
+            <div class="row my-2 mx-1 justify-content-center">
+              <div class="col-md-2 mb-4 mb-md-0">
+                <div
+                  class="bg-image ripple rounded-5 mb-4 overflow-hidden d-block"
+                  data-ripple-color="light"
+                >
+                  <img
+                    src="images/products/<%=el.product.thumbnail%>"
+                    class="w-200"
+                    height="150px"
+                    alt=""
+                  />
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div
+                        class="mask"
+                        style="background-color: hsla(0, 0%, 98.4%, 0.2)"
+                      ></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-7 mb-4 mb-md-0">
+                <p class="fw-bold"><%=el.product.product_name%></p>
+                <p class="mb-1">
+                  <span class="text-muted me-2">Size:</span><span><%=el.product.size%></span>
+                </p>
+                <p class="mb-1">
+                  <span class="text-muted me-2">Price:</span><span><%=el.price%></span>
+                </p>
+                
+              </div>
+              
+            </div>
+            <%})%>
+            <hr />
+            <div class="row">
+              <div class="col-xl-8">
+                
+              </div>
+              <div class="col-xl-3">
+                <ul class="list-unstyled">
+                  <li class="text-muted ms-3">
+                    <span class="text-black me-4">SubTotal</span>₹ <%=
+                    order.subTotal %>
+                  </li>
+                  <li class="text-muted ms-3 mt-2">
+                    <span class="text-black me-4">Shipping</span>₹<%=
+                    order.deliveryCharge%>
+                  </li>
+                </ul>
+                <p class="text-black float-start">
+                  <span class="text-black me-3"> Total Amount</span
+                  ><span style="font-size: 25px"
+                    >₹<%= order.totalAmount %>
+                  </span>
+                </p>
+              </div>
+              <div class="text-center">
+                <% if(order.status === 'return' || order.status === 'cancelled'){ %> 
+                  <a
+                 href="/orders"
+                  class="btn btn-success"
+                >Go back to orders</a>
+                <%} else if( order.status === 'delivered' ) {%>
+                <button
+                  type="button"
+                  onclick="cancelOrder('<%=order._id%>')"
+                  class="btn btn-primary"
+                >
+                  return Product
+                </button>
+                <%}else{%>
+                <button
+                  type="button"
+                  onclick="cancelOrder('<%=order._id%>')"
+                  class="btn btn-danger"
+                >
+                  Cancel Order
+                </button>
+
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Contact Section End -->
+    <script>
+      async function cancelOrder(el) {
+        const orderId = el;
+        $.ajax({
+          url: "/cancel-order",
+          method: "post",
+          data: {
+            orderId,
+          },
+          success:async (response) => {
+            if (response.status == "success") {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+             await Toast.fire({
+                icon: "success",
+                title: "Order Cancelled",
+              })
+             
+              location.reload()
+              
+            } else if (response.status == "productReturn") {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+             await Toast.fire({
+                icon: "success",
+                title: "product return",
+              });
+             
+              location.reload()
+            } else if (response.status == "success") {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              await Toast.fire({
+                icon: "success",
+                title: "Order cancelled",
+              });
+              console.log('boom 3');
+              location.reload()
+            } else {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              await Toast.fire({
+                icon: "error",
+                title: "Something went wrong",
+              });
+              location.reload()
+            }
+          }
+        });
+      }
+    </script>
+    <!-- Partner Logo Section Begin -->
+
+    <!-- Partner Logo Section End -->
+
+    <!-- Footer Section Begin -->
+    <%-include('partial/user-footer.ejs') %>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/jquery.dd.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

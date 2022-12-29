@@ -1,23 +1,20 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/user");
 const Admin = require("../model/admin");
-const passport = require("passport");
-const initializePassport = require("../config/passport");
-initializePassport(passport);
-const otpAuth = require('../utils/twilio');
+const otpAuth = require("../utils/twilio");
 const user = require("../model/user");
 
 let phone;
 let id;
 //#############  USER  REGISTERING   #####################
 exports.registerUser = async (req, res) => {
- 
   let message;
   // Validation
   try {
     if (
       !req.body.name ||
       !req.body.email ||
+      !req.body.mobile ||
       !req.body.password ||
       !req.body.conform
     ) {
@@ -41,90 +38,107 @@ exports.registerUser = async (req, res) => {
       return res.render("user/register");
     }
 
+    req.session.mobile = req.body.mobile;
+
+    await otpAuth.sendVerifyToken(req.body.mobile);
+
     // Hashing the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     // Creating the new user
-    let newUser = await User.create({
+    req.session.userDetails = {
       name: req.body.name,
       email: req.body.email,
       contactNumber: req.body.mobile,
       password: hashedPassword,
-      verified:false
-    });
-    req.session.newUser = newUser._id
-    phone=req.body.mobile
-    otpAuth.sendVerifyToken(phone).then((val)=>{
-      console.log(val)
-      res.render("user/otp");
-    })
+      verified: false,
+    };
+
+    res.render("user/otp");
   } catch (err) {
     console.log(err);
     res.redirect("/register");
   }
 };
+exports.resendOtp = async (req, res) => {
+  console.log("asdasdas", req.session.mobile);
+  await otpAuth.sendVerifyToken(req.session.mobile);
+  res.json({
+    status: true,
+  });
+};
 //#############   OTP VERIFICATION   #####################
-exports.otpRenderIndex=async(req,res)=>{
-  console.log(req.body);
-  
-let verifyotp=req.body
-    
-    let otp=verifyotp.one.concat
-    (verifyotp.two).concat
-    (verifyotp.three).concat
-    (verifyotp.four).concat
-    (verifyotp.five).concat
-    (verifyotp.six) 
-    console.log(otp)
-   otpAuth.checkVerificationToken(phone,otp).then(async (result)=>{
-    if(result === "approved"){
-      await User.updateOne({_id:req.session.newUser},{$set:{verified:true}})
-      res.redirect('/')
-    }else{
-      res.redirect('/register')
+exports.otpVerification = async (req, res) => {
+  console.log(req);
+  console.log(req.session.hii);
+  let verifyotp = req.body;
+  let phone = req.session.mobile;
+  let otp = verifyotp.one
+    .concat(verifyotp.two)
+    .concat(verifyotp.three)
+    .concat(verifyotp.four)
+    .concat(verifyotp.five)
+    .concat(verifyotp.six);
+
+  await otpAuth.checkVerificationToken(phone, otp).then(async (result) => {
+    let userData = req.session.userDetails;
+    if (result.status === "approved") {
+      req.session.user = await User.create(userData);
+      res.redirect("/");
+    } else {
+      res.redirect("/register");
     }
-   })
-      
-}
-//#############  USER PASSPORT LOGIN   #####################
-exports.renderAcc =   passport.authenticate('local',{
-    successRedirect:'/',
-    failureRedirect:'/login',
-    failureFlash:true
-})
-//#############  ADMIN LOGIN   #####################
-exports.renderAdminAcc= async (req, res) => {
+  });
+};
+//#############  USER LOGIN   #####################
+exports.logInUser = async (req, res) => {
   let message;
-  
+  try {
+    const user = await User.findOne({ email: req.body.username });
+    if (user) {
+      const isMatch = await bcrypt.compare(req.body.password, user.password);
+      if (!isMatch) {
+        message = "Email or Password does not match !!";
+        console.log(
+          "🚀 ~ file: authController.js ~ line 96 ~ exports.logInUser= ~ message",
+          message
+        );
+        res.locals.message = message;
+        return res.render("user/login");
+      }
+      req.session.user = user;
+      return res.redirect("/");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+//#############  ADMIN LOGIN   #####################
+exports.renderAdminAcc = async (req, res) => {
+  let message;
   try {
     if (!req.body.email || !req.body.password) {
       message = "Fill all the fields";
       res.locals.message = message;
-      return res.redirect('/admin/loginAdmin');
+      return res.redirect("/admin/loginAdmin");
     }
     const admin = await Admin.findOne({ email: req.body.email });
-    console.log(admin);
     if (admin) {
       const isMatch = await bcrypt.compare(req.body.password, admin.password);
       if (isMatch) {
-
         req.session.admin = true;
-        return res.redirect('/admin');
+        return res.redirect("/admin");
       } else {
         message = "email or password not correct";
-        console.log("🚀 ~ file: authController.js ~ line 70 ~ exports.renderAcc= ~ message", message)
-      res.locals.message = message;
-      return res.redirect('/admin/loginAdmin');
-
+        res.locals.message = message;
+        return res.redirect("/admin/loginAdmin");
       }
     }
     if (!admin) {
       message = "admin not found";
-      console.log("🚀 ~ file: authController.js ~ line 77 ~ exports.renderAcc= ~ message", message)
       res.locals.message = message;
-      return res.redirect('/admin/loginAdmin');
-
+      return res.redirect("/admin/loginAdmin");
     }
   } catch (err) {
     console.log(err);
@@ -132,57 +146,79 @@ exports.renderAdminAcc= async (req, res) => {
   }
 };
 //##########  CHECK ADMIN  MIDDLEWARE  ##############
-exports.checkIfAdmin=async(req,res,next)=>{
-  if(req.session.admin){
+exports.checkIfAdmin = async (req, res, next) => {
+  if (req.session.admin) {
     next();
-  }else{
-    res.redirect('/admin/loginAdmin')
+  } else {
+    res.redirect("/admin/loginAdmin");
   }
-  // const admin=await Admin.findOne(email:email)
-}
+};
 //#############  LOGOUT ADMIN  ######################
-exports.logoutAdmin=(req,res)=>{
+exports.logoutAdmin = (req, res) => {
   req.session.destroy();
-  res.redirect('/admin/loginAdmin')
-}
+  res.redirect("/admin/loginAdmin");
+};
 //##############  BLOCK & UNBLOCK USER  ##############
 
-exports.activeUsers=async(req,res)=>{
-  id=req.params.id
-  await User.updateOne({_id:id},
-    {$set:{isBlocked:false}})
-    res.redirect('/admin/user-list')
+exports.activeUsers = async (req, res) => {
+  id = req.params.id;
+  await User.updateOne({ _id: id }, { $set: { isBlocked: false } });
+  res.redirect("/admin/user-list");
 };
-exports.blockedUsers=async(req,res)=>{
-  id=req.params.id
-  console.log(id);
-  await User.updateOne({_id:id},{$set:{isBlocked:true}})
-  res.redirect('/admin/user-list')
-}
+exports.blockedUsers = async (req, res) => {
+  id = req.params.id;
+  await User.updateOne({ _id: id }, { $set: { isBlocked: true } });
+  res.redirect("/admin/user-list");
+};
 
-//###############  AUTHENTICATE USER PASSPORT  ##########
-exports.checkAuthenticated=(req,res,next)=>{
-  if(req.isAuthenticated()){
-    return next()
+//###############
+exports.checkIsBlocked = async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.username });
+  if (user) {
+    if (user.isBlocked) {
+      res.locals.message = "You are being suspended";
+      return res.render("user/login");
+    } else {
+      next();
+    }
+  } else {
+    next();
   }
-  res.redirect('/login')
-}
-exports.checkNotAuthenticated = (req,res,next)=>{
-     if(req.isAuthenticated()){
-       return res.redirect('/')
-     }
-       next()}
-    
-exports.checkIsBlocked=async(req,res,next)=>{
-  console.log(req.user)
-  const id=req.user._id
-  const user=await User.findById(id)
-  if(user.isBlocked){
-    req.logOut(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/login');
-  })
-}else{
-    next()
+};
+
+//###############
+exports.isUserAuthed = async (req, res, next) => {
+  if (!req.session || !req.session.user) {
+    return res.redirect("/login");
   }
-}
+  const user = await User.findById(req.session.user._id);
+  if (!user) {
+    return res.redirect("/login");
+  }
+  if (user.isBlocked) {
+    return res.redirect("/login");
+  }
+  next();
+};
+exports.isUserAuthedAjax = async (req, res, next) => {
+  if (!req.session || !req.session.user) {
+    return res.json({
+      status: "failed",
+      message: "User not logged in !",
+    });
+  }
+  const user = await User.findById(req.session.user._id);
+  if (!user) {
+    return res.json({
+      status: "failed",
+      message: "User not found !",
+    });
+  }
+  if (user.isBlocked) {
+    return res.json({
+      status: "failed",
+      message: "User has been suspended !",
+    });
+  }
+  next();
+};

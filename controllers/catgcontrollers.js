@@ -1,4 +1,5 @@
 const Category = require("../model/category");
+const Product = require("../model/product");
 const multer = require("multer");
 const sharp = require("sharp");
 const fs = require("fs");
@@ -66,15 +67,17 @@ exports.renderAddCategory = async (req, res) => {
 exports.addingCategory = async (req, res) => {
 
     const data={...req.body}
-   
     const category = await Category.findOne({ name: data.catgname });
-      // req.session.category = true;
-      if (!category) {
-        console.log(1);
+    // req.session.category = true;
+    if (!category) {
+      
       await Category.create({
         name: data.catgname,
+        discount: data.discount,
         thumbnail: data.thumbnail,
       });
+      // const product = await Product.find()
+      //  await Product.updateMany({"category": data.catgname}, {"$set":{"discount":data.discount }});
       res.locals.categoryDetails = await categoryModel.find({}).sort({ _id: -1 });
       res.redirect("/admin/main-category");
     }   

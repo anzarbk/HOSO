@@ -107,16 +107,17 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="login-form">
                         <h2>Login</h2>
-                        <form action="/login-acc" method="post">
+                        <form action="/login" method="post">
                             <div class="group-input">
                                 <label for="email">Username or email address *</label>
                                 <input type="text" id="email" name="username"required>
                             </div>
                             <div class="group-input">
                                 <label for="pass">Password *</label>
-                                <input type="text" id="pass" name="password"required>
-                                <% if(messages){ %>
-                                <p><%= messages.error %></p>
+                                <input type="password" id="pass" name="password"required>
+                                <% console.log(message,'gfhgfhg'); %> 
+                                <% if(message){ %>
+                                <p><%= message %>!</p>
                                     <% } %>
                             </div>
                             <div class="group-input gi-check">
@@ -132,7 +133,7 @@
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="/create-reg" class="or-login">Or Create An Account</a>
+                            <a href="/register" class="or-login">Or Create An Account</a>
                         </div>
                     </div>
                 </div>

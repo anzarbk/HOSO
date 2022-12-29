@@ -57,19 +57,33 @@
                             />
                           </div>
                         </div>
+                        <div class="col-md-6">
+                          <label class="form-label"
+                            >discount <span>( In % )</span></label
+                          >
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="discount"
+                            min="0"
+                            max="100"
+                            value="0"
+                            id="price1"
+                          />
+                        </div>
 
                         <div class="avatar-edit">
                           <input
                             type="file"
                             id="imageUpload"
-                            class="ec-image-upload"
+                            class="form-control mt-4"
                             name="thumbnail"
                             accept="images/*"
                           />
                         </div>
                         <div class="row">
                           <div class="col-12">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary mt-4">
                               Submit
                             </button>
                           </div>
@@ -89,9 +103,9 @@
                             <th>Thumb</th>
                             <th>Name</th>
 
-                            <th>Product</th>
+                            <th>Products</th>
 
-                            <th>Total sale</th>
+                            <th>Discount</th>
 
                             <th>Action</th>
                           </tr>
@@ -108,18 +122,13 @@
                             </td>
                             <td><%=Category.name%></td>
 
-                            <td>28</td>
+                            <td>9999</td>
 
-                            <td>476</td>
+                            <td><%=Category.discount%></td>
 
                             <td>
                               <div class="btn-group">
-                                <button
-                                  type="button"
-                                  class="btn btn-outline-success"
-                                >
-                                  Info
-                                </button>
+                                
                                 <button
                                   type="button"
                                   class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"

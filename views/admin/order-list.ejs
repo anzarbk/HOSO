@@ -1,0 +1,146 @@
+<%- include('partial/admin-head.ejs') %>
+<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light" id="body">
+
+	<!-- WRAPPER -->
+	<div class="wrapper">
+
+		<!-- LEFT MAIN SIDEBAR -->
+		<%- include('partial/admin-sidebar.ejs') %> 
+		
+
+		<!-- PAGE WRAPPER -->
+		<div class="ec-page-wrapper">
+
+			<!-- Header -->
+			<%- include('partial/admin-header.ejs') %> 
+			
+
+			<!-- CONTENT WRAPPER -->
+			<div class="ec-content-wrapper">
+				<div class="content">
+					<div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+						<div>
+							<h1>Orders</h1>
+							<p class="breadcrumbs"><span><a href="/admin/index">Home</a></span>
+								<span><i class="mdi mdi-chevron-right"></i></span>Orders</p>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="card card-default">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="mytable_idorder" class="table" 
+											style="width:100%">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Payment type</th>		
+													<th>Total amount</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<% order.forEach(element => { %>
+												 
+											<tbody>
+												<tr>
+													
+													<td><%= element.user.name  %></td>
+													<td><%= element.paymentType %></td>											
+													<td><%= element.totalAmount %></td>
+													<td>
+														<div class="btn-group ">
+															<button type="button"
+																class="btn btn-outline-success"><a href="/admin/order-info/<%= element._id %>">Info</a></button>
+														
+															</button>
+														</div>
+													</td>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										<%	}); %>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> <!-- End Content -->
+			</div> <!-- End Content Wrapper -->
+
+
+			<!-- Footer -->
+			<footer class="footer mt-auto">
+				<div class="copyright bg-white">
+					<p>
+						Copyright &copy; <span id="ec-year"></span><a class="text-primary"
+						href="https://themeforest.net/user/ashishmaraviya" target="_blank"> HOSO Admin Dashboard</a>. All Rights Reserved.
+					  </p>
+				</div>
+			</footer>
+
+		</div> <!-- End Page Wrapper -->
+	</div> <!-- End Wrapper -->
+	<!-- Common Javascript -->
+	<script src="/assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+	<script src="/assets/plugins/jquery/jquery.notify.min.js"></script>
+	<script src="/assets/plugins/jquery/jquery.bundle.notify.min.js"></script>
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/plugins/simplebar/simplebar.min.js"></script>
+	<script src="/assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+	<script src="/assets/plugins/slick/slick.min.js"></script>
+
+	<!-- Datatables -->
+	<script src='/assets/plugins/data-tables/jquery.datatables.min.js'></script>
+	<script src='/assets/plugins/data-tables/datatables.bootstrap5.min.js'></script>
+	<script src='/assets/plugins/data-tables/datatables.responsive.min.js'></script>
+
+	<!-- Option Switcher -->
+	<script src="/assets/plugins/options-sidebar/optionswitcher.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- Ekka Custom -->
+	<script src="/assets/js/ekka.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#mytable_idorder').DataTable({
+                search: true,
+                paging: true,
+                order: [[3, 'desc'], [0, 'asc']],
+                dom: 'lBfrtip',
+                buttons: [
+                    { extend: 'copy', className: 'btn btn-primary glyphicon glyphicon-duplicate' },
+                    { extend: 'csv', className: 'btn btn-primary glyphicon glyphicon-save-file' },
+                    { extend: 'excel', className: 'btn btn-primary glyphicon glyphicon-list-alt' },
+                    { extend: 'pdf', className: 'btn btn-primary glyphicon glyphicon-file' },
+                    { extend: 'print', className: 'btn btn-primary glyphicon glyphicon-print' }
+                ]
+            });
+        });
+    </script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+</body>
+
+</html>

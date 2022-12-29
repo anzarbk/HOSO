@@ -153,13 +153,18 @@
                         class="m-2 text-center form-control rounded" type="text" id="fourth" name="four" maxlength="1" /> <input
                         class="m-2 text-center form-control rounded" type="text" id="fifth" name="five" maxlength="1" /> <input
                         class="m-2 text-center form-control rounded" type="text" id="sixth" name="six" maxlength="1" /> </div>
+                        <div class="row text-primary font-weight-bold justify-content-center" id="countdown"></div>
                 <div class="mt-4"> <button class="btn btn-danger px-4 validate">Submit</button> </div>
             </div>
                 </form>
                
             <div class="card-2">
-                <div class="content d-flex justify-content-center align-items-center"> <span>Didn't get the code</span> <a
-                        href="#" class="text-decoration-none ms-3">Resend(1/3)</a> </div>
+                
+                <div class="content d-flex justify-content-center align-items-center" id="resend">
+                    
+                    
+                    <span>Didn't get the code</span> <a
+                         class="text-decoration-none ms-3" onclick="resendOtp(this)" >Resend</a></div>
             </div>
         </div>
     </div>
@@ -174,7 +179,32 @@
     
     
         });
+        function resendOtp(el){
+
+            $.ajax({
+                url:'/resend-otp',
+                method:'get',
+               success:(response)=>{
+
+               }
+            })
+        }
         </script>
+        <script>
+
+            var timeleft =30;
+            var downloadTimer = setInterval(function(){
+              if(timeleft <= 0){
+                clearInterval(downloadTimer);
+                document.getElementById("resend").style.display = "block";
+                document.getElementById("resend").style.cursor = "pointer";
+                document.getElementById("countdown").innerHTML =" resend your Otp "
+              } else {
+               $("#countdown").text("Resend otp in "+ timeleft + " seconds "); 
+              }
+              timeleft -= 1;
+            }, 1000);
+              </script>
     <!-- Register Form Section End -->
     
     <!-- Partner Logo Section Begin -->

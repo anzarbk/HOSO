@@ -54,6 +54,9 @@ const userSchema = new mongoose.Schema(
       verified:{
         type:Boolean,
         default:false
+      },
+      wallet:{
+        type:Number
       }
       
     },
@@ -62,8 +65,5 @@ const userSchema = new mongoose.Schema(
     }
   );
 
-
-
-
-  module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
   

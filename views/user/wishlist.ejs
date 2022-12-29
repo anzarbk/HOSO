@@ -1,105 +1,124 @@
 <!DOCTYPE html>
 <html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Fashi Template" />
+    <meta name="keywords" content="Fashi, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fashi | Template</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Fashi Template">
-        <meta name="keywords" content="Fashi, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Fashi | Template</title>
-    
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
-    </head>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+  </head>
+
+  <body>
     <!-- Page Preloder -->
     <div id="preloder">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
 
     <!-- Header Section Begin -->
-    <%- include('partial/user-header.ejs') %> 
+    <%- include('partial/user-header.ejs') %>
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="./home.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Shopping Cart</span>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-text product-more">
+              <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+              <a href="./shop.html">Wishlist</a>
+              
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Breadcrumb Section Begin -->
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cart-table">
-                        <% if (!cart) { %>
-                            
-                                <div>
-                                    <h3 style="color: black; font-weight: bold;">cart is empty</h3>
-                                </div>
-                                
-                            <% }else{ %>
-                                
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th class="p-name">Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th><i class="ti-close"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <% cart.items.forEach(element => { %>
-                               
-                              
-                                <tr>
-                                    <td class="cart-pic first-row"><img src="/images/products/<%=element.product.thumbnail%>" alt=""></td>
-                                    <td class="cart-title first-row">
-                                        <h5 style="margin-left: 106px;"><%=element.product.product_name  %> </h5>
-                                    </td>
-                                    <td class="p-price first-row">₹<%=element.price %></td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="<%= element.quantity %>">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price first-row">₹<%= element.price * element.quantity %></td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
-                                </tr>
-                                
-                                <% }) %>
-                                <!-- <tr>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="cart-table">
+              <% if (!wish|| wish.items.length==0) { %>
+
+              <div>
+                <h3 style="color: black; font-weight: bold">
+                  Wishlist is empty
+                </h3>
+              </div>
+
+              <% }else{ %>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th class="p-name">Product Name</th>
+                    <th>Price</th>
+                    <th class="p-name">action</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <% wish.items.forEach((element,index) => { %>
+
+                  <tr>
+                    <td class="cart-pic first-row">
+                      <img
+                        src="/images/products/<%=element.product.thumbnail%>"
+                        alt=""
+                      />
+                    </td>
+                    <td class="cart-title first-row text-center">
+                      <h5><%=element.product.product_name %></h5>
+                    </td>
+                    <td class="p-price first-row">₹<%=element.price %></td>
+                    <td class="first-row ">
+                      <!-- <div class="row "> -->
+                        <!-- <div class="col-lg-4"> -->
+                          <div class="cart-buttons mt-5">
+                            <a onclick="addingToCarthome(this)" data-id="<%= element.product._id %>" class="primary-btn  continue-shop"
+                              >Add to cart</a
+                            >
+                          <!-- </div> -->
+                        <!-- </div> -->
+                    </td>
+                    <td class="close-td first-row">
+                      <a data-id="<%= index %>" onclick="removeFromWish(this)"
+                        ><i class="ti-close"></i
+                      ></a>
+                    </td>
+                  </tr>
+
+                  <% }) %>
+                  <!-- <tr>
                                     <td class="cart-pic"><img src="img/cart-page/product-2.jpg" alt=""></td>
                                     <td class="cart-title">
                                         <h5>American lobster</h5>
@@ -131,52 +150,111 @@
                                     <td class="total-price">$60.00</td>
                                     <td class="close-td"><i class="ti-close"></i></td>
                                 </tr> -->
-            
-                            </tbody>
-                        </table>
+                </tbody>
+              </table>
+              <script>
+                async function removeFromWish(el) {
+                  const index = $(el).data("id");
+                  const res = await $.ajax({
+                    url: "/remove-from-wish",
+                    method: "PATCH",
+                    data: {
+                      index,
+                    },
+                  });
+                  if (res.status === "success") {
+                    $(el).parent("td").parent("tr").hide();
+                  } else {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Something went wrong!",
+                    });
+                  }
+                }
+                async function addingToCarthome(el) {
+      const productId = $(el).data("id");
+      console.log("cart script");
+      $.ajax({
+        url: "/add-to-carthome",
+        method: "PATCH",
+        data: {
+          productId,
+        },
+        success: (response) => {
+          if (response.status == "success") {
+              $(el)
+              .css({backgroundColor: '#19dc26'})
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
 
-                  
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="cart-buttons">
-                                <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                <a href="#" class="primary-btn up-cart">Update cart</a>
-                            </div>
-                            <div class="discount-coupon">
-                                <h6>Discount Codes</h6>
-                                <form action="#" class="coupon-form">
-                                    <input type="text" placeholder="Enter your codes">
-                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
-                                </form>
-                            </div>
-                        </div>
+            Toast.fire({
+              icon: "success",
+              title: "added to cart",
+            });
+          } else if (response.status == "already") {
+              $(el)               
+              .css({backgroundColor: '#19dc26'})
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
 
-                            
-                        
-                        <div class="col-lg-4 offset-lg-4">
-                            <div class="proceed-checkout">
-                                <ul>
-                                    <li class="subtotal">Subtotal <span>₹<%= cart.totalAmount %></span></li>
-                                    <li class="cart-total">Total <span>₹<%= cart.totalAmount %></span></li>
-                                </ul>
-                                <a href="/shopping-cart" class="proceed-btn">PROCEED TO CHECK OUT</a>
-                            </div>
-                        </div>
-                        <% } %>
-                    </div>
-                </div>
+            Toast.fire({
+              icon: "success",
+              title: "already exist in cart",
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+            });
+          }
+        },
+      });
+    }
+              </script>
             </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="cart-buttons">
+                  <a href="/shop" class="primary-btn continue-shop"
+                    >Continue shopping</a
+                  >
+                </div>
+              </div>
+
+              <% } %>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Shopping Cart Section End -->
 
     <!-- Partner Logo Section Begin -->
-   
+
     <!-- Partner Logo Section End -->
 
     <!-- Footer Section Begin -->
-    <%-include('partial/user-footer.ejs') %> 
+    <%-include('partial/user-footer.ejs') %>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
@@ -190,6 +268,5 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

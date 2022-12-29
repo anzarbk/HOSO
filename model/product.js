@@ -39,7 +39,11 @@ const ProductSchema = new mongoose.Schema(
       tag : {
         type: String,
         reqiured:true
-      }, 
+      },
+      discount:{
+        type: Number,
+        default: 0
+      } 
     },
     {
       timestamps:true

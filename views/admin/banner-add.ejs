@@ -1,0 +1,165 @@
+<% let message = locals.message || null %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('partial/admin-head.ejs') %>
+  <body
+    class="ec-header-fixed ec-sidebar-fixed ec-sidebar-dark ec-header-light"
+    id="body"
+  >
+    <!-- WRAPPER -->
+    <div class="wrapper">
+      <!-- LEFT MAIN SIDEBAR -->
+      <%- include('partial/admin-sidebar.ejs') %>
+      <!-- PAGE WRAPPER -->
+      <div class="ec-page-wrapper">
+        <!-- Header -->
+        <%- include('partial/admin-header.ejs') %> <
+        <!-- CONTENT WRAPPER -->
+        <div class="ec-content-wrapper">
+          <div class="content">
+            <div
+              class="breadcrumb-wrapper d-flex align-items-center justify-content-between"
+            >
+              <div>
+                <h1>Add Banner</h1>
+                <p class="breadcrumbs">
+                  <span><a href="/admin/index">Home</a></span>
+                  <span><i class="mdi mdi-chevron-right"></i></span>Banner
+                </p>
+              </div>
+              <div>
+                <a href="/admin/list-banner" class="btn btn-primary">
+                  View All
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-default">
+                  <div class="card-header card-header-border-bottom">
+                    <h2>list Banners</h2>
+                  </div>
+
+                  <div class="card-body">
+                    <form
+                      action="/admin/add-banner"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="row ec-vendor-uploads">
+                        <div class="col-lg-4">
+                          <div class="ec-vendor-img-upload">
+                            <div class="ec-vendor-main-img">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                  <input
+                                    type="file"
+                                    id="imageUpload"
+                                    class="ec-image-upload"
+                                    name="image"
+                                    accept=".png, .jpg, .jpeg"
+                                  />
+                                  <label for="imageUpload"
+                                    ><img
+                                      src="/assets/img/icons/edit.svg"
+                                      class="svg_img header_svg"
+                                      alt="edit"
+                                  /></label>
+                                </div>
+                                <div class="avatar-preview ec-preview">
+                                  <div class="imagePreview ec-div-preview">
+                                    <img
+                                      class="ec-image-preview"
+                                      src="/assets/img/products/vender-upload-preview.jpg"
+                                      alt="edit"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- </div> -->
+                        <div class="col-lg-8">
+                          <div class="ec-vendor-upload-detail">
+                            <!-- <form class="row g-3"> -->
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label"
+                                >Banner name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control slug-title"
+                                name="name"
+                                id="inputEmail4"  onkeyup="this.value = this.value.toLowerCase()"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputEmail4" class="form-label"
+                                >product name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control slug-title"
+                                name='product'
+                                id="inputEmail4"
+                              />
+                              <% if (message){ %>
+                                <p class="text-danger"><%= message %> !</p>
+                                <% } %>
+                            </div>
+                            <div class="col-md-12">
+                              <button type="submit" class="btn btn-primary">
+                                Submit
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Content -->
+        </div>
+        <!-- End Content Wrapper -->
+
+        <!-- Footer -->
+        <footer class="footer mt-auto">
+          <div class="copyright bg-white">
+            <p>
+              Copyright &copy; <span id="ec-year"></span
+              ><a
+                class="text-primary"
+                href="https://themeforest.net/user/ashishmaraviya"
+                target="_blank"
+              >
+                HOSO Admin Dashboard</a
+              >. All Rights Reserved.
+            </p>
+          </div>
+        </footer>
+      </div>
+      <!-- End Page Wrapper -->
+    </div>
+    <!-- End Wrapper -->
+
+    <!-- Common Javascript -->
+    <script src="/assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/assets/plugins/jquery/jquery.notify.min.js"></script>
+    <script src="/assets/plugins/jquery/jquery.bundle.notify.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/plugins/tags-input/bootstrap-tagsinput.js"></script>
+    <script src="/assets/plugins/simplebar/simplebar.min.js"></script>
+    <script src="/assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+    <script src="/assets/plugins/slick/slick.min.js"></script>
+
+    <!-- Option Switcher -->
+    <script src="/assets/plugins/options-sidebar/optionswitcher.js"></script>
+
+    <!-- Ekka Custom -->
+    <script src="/assets/js/ekka.js"></script>
+  </body>
+</html>

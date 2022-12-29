@@ -1,253 +1,376 @@
+<% let user =locals.user || null %>
 <!DOCTYPE html>
 <html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Fashi Template" />
+    <meta name="keywords" content="Fashi, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fashi | Template</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Fashi Template">
-        <meta name="keywords" content="Fashi, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Fashi | Template</title>
-    
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
-    </head>
-<body>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+  </head>
+  <body>
     <!-- Page Preloder -->
     <div id="preloder">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
 
     <!-- Header Section Begin -->
-    <%- include('partial/user-header.ejs') %> 
+    <%- include('partial/user-header.ejs') %>
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-text">
+              <a href="#"><i class="fa fa-home"></i> Home</a>
+              <span >Shop</span>
+              
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Breadcrumb Section Begin -->
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                            <% categoryDetails.forEach(item=>{ %> 
-                            <li><a href="#"><%=item.category %> </a></li>
-                            <% }) %> 
-                        </ul>
-                    </div>
-                    <!-- <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-calvin">
-                                    Calvin Klein
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    Diesel
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    Polo
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-tags">
-                            <a href="#">Towel</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Coat</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Men's hats</a>
-                            <a href="#">Backpack</a>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="col-lg-9 order-1 order-lg-2">
-                    <div class="product-show-option">
-                        <div class="row">
-                            <div class="col-lg-7 col-md-7">
-                                <div class="select-option">
-                                    <select class="sorting">
-                                        <option value="">Default Sorting</option>
-                                    </select>
-                                    <select class="p-show">
-                                        <option value="">Show:</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 01- 09 Of 36 Product</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-list">
-
-                        <div class="row">
-                            <% productDetails.forEach(Product => { %>
-                            <div class="col-lg-4 col-sm-6">
-                                
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="/images/products/<%=Product.thumbnail%>" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="/product?_id=<%= Product._id %>">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <%	}); %>
-                        </div>
-                    </div>
-                    <div class="loading-more">
-                        <i class="icon_loading"></i>
-                        <a href="#">
-                            Loading More
-                        </a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter"
+          >
+            <div class="filter-widget">
+              <h4 class="fw-title">Categories</h4>
+              <ul class="filter-catagories">
+                <% categoryDetails.forEach(item=>{ %>
+                <li><a  href="/shop?category=<%= item._id %>"><%=item.name %> </a></li>
+                <% }) %>
+              </ul>
+            </div> 
+          </div>
+          <div class="col-lg-9 order-1 order-lg-2">
+            <div class="product-show-option">
+              <div class="row">
+                
+                
+              </div>
             </div>
+            <div class="product-list">
+              <div class="row" id='product-list-row'>
+                <% productDetails.forEach(Product => { %>
+                <div class="col-lg-4 col-sm-6">
+                  <div class="product-item">
+                    <div class="pi-pic">
+                      <a href="/product?_id=<%= Product._id %>"><img
+                        src="/images/products/<%= Product.thumbnail %>"
+                        alt=""
+                      /></a>
+                      <div class="sale pp-sale">Sale</div>
+                      <div class="icon">
+                        <a onclick="addingToWish(this)"
+                        class="heart-icon"
+                        data-id="<%= Product._id %>">
+                            <% var wishlist = locals.wishlist || null %> 
+                          <% if (wishlist && wishlist.items.length &&
+                          wishlist.items.some(el => el.product.toString() ==
+                          Product._id.toString()) ) {%>
+                          <i class="icon_heart"></i>
+                          <% } else { %>
+                          <i class="icon_heart_alt"></i>
+                          <% } %>
+                        </a>
+                      </div>
+                      <ul>
+                        <% let cart = locals.cart || null %> 
+                        <li class="w-icon active">
+                          <a
+                          style ="<%= (cart && cart.items.length &&
+                          cart.items.some(el => el.product.toString() == Product._id.toString()) ) ? "background:#19dc26;" : "" ; %>"
+                           onclick="addingToCarthome(this)"
+                            data-id="<%= Product._id %>" 
+                            ><i class="icon_bag_alt"></i>
+                          </a>
+                        </li>
+                        <li class="quick-view">
+                          <a href="/product?_id=<%= Product._id %>"
+                            >+ Quick View</a
+                          >
+                        </li>
+                        <li class="w-icon">
+                          <a href="#"><i class="fa fa-random"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="pi-text">
+                      
+                      <a href="/product?_id=<%= Product._id %>">
+                        <h5><%= Product.product_name %></h5>
+                      </a>
+                      <div class="product-price">₹
+                        <%=Product.price*(1-Product.discount/100)%>
+                        <span>₹<%=Product.price %></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }); %>
+              </div>
+            </div>
+            <div class="loading-more">
+              <i class="icon_loading"></i>
+              <a id="loadMore" data-page='1' onclick="loadMore(this)"> Loading More </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Product Shop Section End -->
+    <script>
+      async function addingToWish(el) {
+        const productId = $(el).data("id");
+        
 
-    <!-- Partner Logo Section Begin -->
+        $.ajax({
+          url: "/add-to-wish",
+          method: "PATCH",
+          data: {
+            productId,
+          },
+          success: (response) => {
+            if (response.status==='success') {
+                $(el)
+                .children('i')
+                .addClass("icon_heart")
+                .removeClass("icon_heart_alt")
+
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: "success",
+                title: "added to Wishlist",
+              });
+            }
+            else if (response.status === "removed") {
+              $(el)
+                .children('i')
+                .addClass("icon_heart_alt")
+                .removeClass("icon_heart");
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: "success",
+                title: "Removed from Wishlist",
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
+            }
+          },
+        });
+      }
+      async function addingToCarthome(el) {
+        const productId = $(el).data("id");
+        console.log("cart script");
+        $.ajax({
+          url: "/add-to-carthome",
+          method: "PATCH",
+          data: {
+            productId,
+          },
+          success: (response) => {
+            if (response.status == "success") {
+                $(el)
+                .css({backgroundColor: '#19dc26'})
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: "success",
+                title: "added to cart",
+              });
+            } else if (response.status == "already") {
+                $(el)               
+                .css({backgroundColor: '#19dc26'})
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: "success",
+                title: "already exist in cart",
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
+            }
+          },
+        });
+        
+      }
+     async function loadMore (el){
+       const page = $('#loadMore').data('page')
+       $('#loadMore').data('page',parseInt(page+1, 10))
+  
+       
+       $.ajax({
+         url:`/Load-more?page=${page}`,
+         method:'get',
+          success:(response)=>{
+
+            const wishlist = response.wishlist
+        const cart = response.cart
+
+            if (response.status == "success"){
+              response.result.data.forEach(Product => {
+                $('#product-list-row').append(`
+                <div class="col-lg-4 col-sm-6">
+                  <div class="product-item">
+                    <div class="pi-pic">
+                      <a href="/product?_id=${ Product._id }"><img
+                        src="/images/products/${ Product.thumbnail }"
+                        alt=""
+                      /></a>
+                      <div class="sale pp-sale">Sale</div>
+                      <div class="icon">
+                        <a onclick="addingToWish(this)"
+                        class="heart-icon"
+                        data-id="${ Product._id }">
+
+                          <i class=" ${ (wishlist && wishlist.items.length &&
+                          wishlist.items.some(el => el.product.toString() ==
+                          Product._id.toString()) ) ? 'icon_heart': 'icon_heart_alt' }"></i>
+                           
+                        </a>
+                      </div>
+                      <ul>
+                        
+                        <li class="w-icon active">
+                          <a
+                          style ="${ (cart && cart.items.length &&
+                          cart.items.some(el => el.product.toString() == Product._id.toString()) ) ? "background:#19dc26;" : "" }"
+                           onclick="addingToCarthome(this)"
+                            data-id="${ Product._id }" 
+                            ><i class="icon_bag_alt"></i>
+                          </a>
+                        </li>
+                        <li class="quick-view">
+                          <a href="/product?_id=${ Product._id }"
+                            >+ Quick View</a
+                          >
+                        </li>
+                        <li class="w-icon">
+                          <a href="#"><i class="fa fa-random"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="pi-text">
+                      
+                      <a href="/product?_id=${ Product._id }">
+                        <h5>${ Product.product_name }</h5>
+                      </a>
+                      <div class="product-price">₹
+                        ${Product.price*(1-Product.discount/100)}
+                        <span>₹${Product.price }</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>`)
+              });
+              
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: response.message,
+              });
+            }
+          }
+       })
+      
+       
+
+     }
+     
     
+     
+    </script>
+    <!-- Partner Logo Section Begin -->
+
     <!-- Partner Logo Section End -->
 
     <!-- Footer Section Begin -->
-    <%-include('partial/user-footer.ejs') %> 
+    <%-include('partial/user-footer.ejs') %>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
@@ -261,6 +384,5 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

@@ -55,10 +55,10 @@
                                     type="file"
                                     id="imageUpload"
                                     name="thumbnail"
-                                    value="<%= Product.thumbnail ? Product.thumbnail:'' %> "
+                                    value="/Images/products/<%= Product.thumbnail %>"
                                     class="ec-image-upload"
-                                    src="/Images/products/<%= Product.thumbnail %>"
                                     accept="image/*"
+                                    
                                   />
                                   <label for="imageUpload"
                                     ><img
@@ -85,7 +85,7 @@
                           <% for( let i = 0; i < Product.images.length; i++ ) { %>
                           <div class="thumb-upload">
                             <div class="thumb-edit">
-                              <input type='file' id="thumbUpload01" class="ec-image-upload" name="images" accept="image/*" />
+                              <input type='file' id="thumbUpload01" value="/images/products/<%= Product.images[i] %>" class="ec-image-upload" name="images" accept="image/*" />
                               <label for="imageUpload"><img src="/assets/img/icons/edit.svg" class="svg_img header_svg" alt="edit" /></label>
                             </div>
                             <div class="thumb-preview ec-preview">
@@ -177,33 +177,33 @@
                               <label class="form-label">Size</label>
                               <div class="form-checkbox-box">
                                 <div class="form-check form-check-inline">
-                                  <input type="radio" name="size" value="small"
+                                  <input type="radio" name="size" value="S"
                                   <%=Product.size.includes('small')
                                   ?'checked':'' %>>
                                   <label>S</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input type="radio" name="size" value="medium"
+                                  <input type="radio" name="size" value="M"
                                   <%=Product.size.includes('medium')
                                   ?'checked':'' %>>
                                   <label>M</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input type="radio" name="size" value="large"
+                                  <input type="radio" name="size" value="L"
                                   <%=Product.size.includes('large') ?
                                   'checked':''%>>
                                   <label>L</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                   <input type="radio" name="size"
-                                  value="xLarge"<%=
+                                  value="XL"<%=
                                   Product.size.includes('xLarge')?'checked':''
                                   %>>
                                   <label>XL</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                   <input type="radio" name="size"
-                                  value="xxLarge"<%Product.size.includes('xxLarge')?'checked':''
+                                  value="XXL"<%Product.size.includes('xxLarge')?'checked':''
                                   %>>
                                   <label>XXL</label>
                                 </div>
@@ -219,6 +219,20 @@
                                 id="price1"
                                 name="price"
                                 value="<%= Product.price%>"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <label class="form-label"
+                                >discount <span>( In % )</span></label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                name="discount"
+                                min="0"
+                                max="100"
+                                value="<%= Product.discount%>"
+                                id="price1"
                               />
                             </div>
                             <div class="col-md-6">
@@ -244,7 +258,7 @@
                                 type="text"
                                 class="form-control"
                                 id="group_tag"
-                                name="group_tag"
+                                name="tag"
                                 value="<%= Product.tag %>"
                                 placeholder=""
                                 data-role="tagsinput"

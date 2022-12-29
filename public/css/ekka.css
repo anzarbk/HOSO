@@ -11412,14 +11412,14 @@ textarea.form-control-lg {
   display: none;
 }
 .steps .step.completed .step-icon-wrap::before {
-  background-color: #88aaf3;
+  background-color: #000000;
 }
 .steps .step.completed .step-icon-wrap::after {
-  background-color: #88aaf3;
+  background-color: #000000;
 }
 .steps .step.completed .step-icon {
-  border-color: #88aaf3;
-  background-color: #88aaf3;
+  border-color: #000000;
+  background-color: #222222;
   color: #fff;
 }
 
@@ -17598,8 +17598,8 @@ a.badge-purple:focus, a.badge-purple.focus {
 }
 .btn.btn-primary {
   color: #ffffff;
-  background-color: #88aaf3;
-  border-color: #88aaf3;
+  background-color: #5dd4ac;
+  border-color: #5dd4ac;
 }
 .btn.btn-primary:hover, .btn.btn-outline-primary:hover {
   color: #ffffff;
@@ -21034,7 +21034,7 @@ div.copied {
   width: 5px;
   height: 100%;
   border-radius: 5px;
-  background: #88aaf3;
+  background: #ed5a5a;
   opacity: 0;
 }
 .sidebar .sidebar-inner .section-title {
@@ -21113,7 +21113,7 @@ div.copied {
 }
 
 .sidebar .nav > li.active > a i {
-  color: #88aaf3;
+  color: #000000;
 }
 
 /* Caret styles */
@@ -24021,10 +24021,10 @@ table.dataTable td .btn-group button {
   padding: 3px 10px;
 }
 table.dataTable td .btn-group button:first-child {
-  border-radius: 15px 0 0 15px !important;
+  border-radius: 15px 15px 15px 15px !important;
 }
 table.dataTable td .btn-group button:nth-last-child(-n+2) {
-  border-radius: 0 15px 15px 0 !important;
+  border-radius: 15px 15px 15px 15px !important;
 }
 
 .ec-tbl .ec-tbl-content {

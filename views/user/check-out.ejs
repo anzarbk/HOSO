@@ -1,210 +1,437 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Fashi Template">
-        <meta name="keywords" content="Fashi, unica, creative, html">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Fashi | Template</title>
-    
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
-    </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Fashi Template" />
+  <meta name="keywords" content="Fashi, unica, creative, html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Fashi | Template</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/themify-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+  <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Razorpay CDN -->
+  <link rel="stylesheet" href="/css/checkout.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+</head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
+  <% let message=locals.message || null %>
+    <% let cart=locals.cart %>
+      <!-- Page Preloder -->
+      <div id="preloder">
         <div class="loader"></div>
-    </div>
+      </div>
 
+      <!-- Header Section Begin -->
+      <%- include('partial/user-header.ejs') %>
+        <!-- Header End -->
 
-      
-    <!-- Header Section Begin -->
-    <%- include('partial/user-header.ejs') %> 
-    <!-- Header End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
+        <!-- Breadcrumb Section Begin -->
+        <div class="breacrumb-section">
+          <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Check Out</span>
-                    </div>
+              <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                  <a href="/"><i class="fa fa-home"></i> Home</a>
+                  <a href="/shop">Shop</a>
+                  <span>Check Out</span>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- Breadcrumb Section Begin -->
+        <!-- Breadcrumb Section Begin -->
 
-    <!-- Shopping Cart Section Begin -->
-    <section class="checkout-section spad">
-        <div class="container">
-            <form action="#" class="checkout-form">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="checkout-content">
-                            <a href="#" class="content-btn">Click Here To Login</a>
-                        </div>
-                        <h4>Biiling Details</h4>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <label for="fir">First Name<span>*</span></label>
-                                <input type="text" id="fir">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="last">Last Name<span>*</span></label>
-                                <input type="text" id="last">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="cun-name">Company Name</label>
-                                <input type="text" id="cun-name">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="cun">Country<span>*</span></label>
-                                <input type="text" id="cun">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="street">Street Address<span>*</span></label>
-                                <input type="text" id="street" class="street-first">
-                                <input type="text">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="zip">Postcode / ZIP (optional)</label>
-                                <input type="text" id="zip">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="town">Town / City<span>*</span></label>
-                                <input type="text" id="town">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="email">Email Address<span>*</span></label>
-                                <input type="text" id="email">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone">Phone<span>*</span></label>
-                                <input type="text" id="phone">
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="create-item">
-                                    <label for="acc-create">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-create">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Shopping Cart Section Begin -->
+        <section class="checkout-section spad">
+          <div class="container checkout-form">
+            <!-- <form action="#"  class="checkout-form"> -->
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="checkout-content">
+                  <div class="row">
+                    <div class="col">
+                      <% let address=locals.address %>
+                        <!-- Iterate adddresses -->
+                        <% if (address.length>0) { %> <% address[0].address.forEach((element,index)=> { %>
+                            <div class="card address-card <%= index===0 ? 'select-address' : '' ;%>"
+                              onclick="addActiveClass(this)" data-index="<%=index%>">
+                              <div class="card-body">
+                                <h5 class="card-title">
+                                  Name: <%=element.firstname +' '+ element.lastname %>
+                      </h5>
+                      <p class="card-text">City/Towm: <%=element.town %></p>
+                      <p class="card-text">PIN: <%=element.postcode %></p>
+                      <p class="card-text">
+                        Address: <%=element.streetaddress %>
+                      </p>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="checkout-content">
-                            <input type="text" placeholder="Enter Your Coupon Code">
-                        </div>
-                        <div class="place-order">
-                            <h4>Your Order</h4>
-                            <div class="order-total">
+                  </div>
+                  <% }) %> <% } %>
+                  <!-- Iterate adddresses -->
+                </div>
+              </div>
+            </div>
+            <h4>Biiling Details</h4>
+            <div class="row">
+              <div class="col">
+                <form action="/add-address-checkout" method="POST">
+                  <div class="row">
+                    <div class="col">
+                      <label for="fir">First Name<span>*</span></label>
+                      <input type="text" name="firstname" id="fir" />
+                    </div>
+
+                    <div class="col">
+                      <label for="last">Last Name<span>*</span></label>
+                      <input type="text" name="lastname" id="last" />
+                    </div>
+
+                    <div class="col">
+                      <label for="street">Street Address<span>*</span></label>
+                      <input
+                        type="text"
+                        id="street"
+                        class="street-first"
+                        name="streetaddress"
+                      />
+                    </div>
+
+                    <div class="col">
+                      <label for="zip">Postcode / ZIP (optional)</label>
+                      <input type="text" id="zip" name="postcode" />
+                    </div>
+
+                    <div class="col">
+                      <label for="town">Town / City<span>*</span></label>
+                      <input type="text" id="town" name="town" />
+                    </div>
+
+                    <div class="col">
+                      <label for="phone">Phone<span>*</span></label>
+                      <input type="text" id="phone" name="phone" />
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-primary" type="submit">
+                        Add address
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="checkout-content">
+           
+              <%if(!cart.couponDiscount){%>
+                <div class="discount-coupon">
+                      <h6>Discount Codes</h6>
+                      <form action="/applyCoupon" method=' POST' class="coupon-form">
+                                    <input type="text" placeholder="Enter your codes" name="code"
+                                      onkeyup="this.value = this.value.toUpperCase()" />
+                                    <button type="submit" class="site-btn coupon-btn">
+                                      Apply
+                                    </button>
+
+                                    <% if(message){ %>
+
+                                      <p class="text-danger text-center">
+                                        <%= message %> !
+                                      </p>
+                                      <% } %>
+
+                                        </form>
+                              </div>
+                              <% }else{ %>
+                                <div>
+                                  <p>YOUR COUPON DISCOUNT IS <%=cart.couponDiscount%>
+                                  </p>
+                                </div>
+                                <%}%>
+                            </div>
+                            <div class="place-order">
+                              <h4>Your Order</h4>
+                              <div class="order-total">
                                 <ul class="order-table">
-                                    <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
+
+                                  <li>Product <span>Total</span></li>
+                                  <% cart.items.forEach(element=>{ %>
+                                    <li class="fw-normal">
+                                      <%=element.product.product_name %> x <%=element.quantity%>
+                                          <span>₹<%=element.price*element.quantity%></span>
+                                    </li>
+
+                                    <% }) %>
+                                      <br />
+                                      <br />
+                                      <br />
+
+                                      <br />
+
+                                      <hr />
+                                      <li class="total-price">
+                                        Subtotal <span>₹<%=cart.subTotal%></span>
+                                      </li>
+                                      <li class="total-price">
+                                        Discount <span>-₹<%=cart.discount%></span>
+                                      </li>
+                                      <li class="total-price">
+                                        Coupon Discount <span>-₹<%=cart.couponDiscount%></span>
+                                      </li>
+                                      <li class="total-price">
+                                        Total <span>₹<%=cart.totalAmount%></span>
+                                      </li>
                                 </ul>
                                 <div class="payment-check">
+                                  <div class="pc-item">
+                                    <label for="pc-check">
+                                      Cash on delivery
+                                      <input type="radio" id="pc-check" value="cod" name="payment" />
+                                      <span class="checkmark"></span>
+                                    </label>
+                                  </div>
+                                  <div class="payment-check">
                                     <div class="pc-item">
-                                        <label for="pc-check">
-                                            Cheque Payment
-                                            <input type="checkbox" id="pc-check">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                      <label for="pc-wallet">
+                                        Wallet
+                                        <input type="radio" id="pc-wallet" value="wallet" name="payment" />
+                                        <span class="checkmark"></span>
+                                      </label>
                                     </div>
+
                                     <div class="pc-item">
-                                        <label for="pc-paypal">
-                                            Paypal
-                                            <input type="checkbox" id="pc-paypal">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                      <label for="pc-razorpay">
+                                        Pay online with Razorpay
+                                        <input type="radio" id="pc-razorpay" value="online" name="payment" />
+                                        <span class="checkmark"></span>
+                                      </label>
                                     </div>
+                                  </div>
+
+                                  <% if (message){ %>
+                                    <p class="text-danger">
+                                      <%= message %> !
+                                    </p>
+                                    <% } %>
+                                      <div class="order-btn">
+                                        <button onclick="placeOrder(this)" class="site-btn place-btn">
+                                          Place Order
+                                        </button>
+                                      </div>
                                 </div>
-                                <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
-                                </div>
+                              </div>
                             </div>
-                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!-- Shopping Cart Section End -->
+                    <!-- </form> -->
+                  </div>
+        </section>
 
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
+        <script>
+          function addActiveClass(el) {
+            $(".address-card").removeClass("select-address");
+            $(el).addClass("select-address");
+          }
 
-    <!-- Footer Section Begin -->
-    <%-include('partial/user-footer.ejs') %> 
-    <!-- Footer Section End -->
+          async function placeOrder(el) {
+            try {
+              const index = $(".address-card.select-address").data("index");
+              const payment = $('input[name="payment"]:checked').val();
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.dd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+              $.ajax({
+                url: "/place-order",
+                method: "post",
+                data: { index, payment },
+
+                success: (response) => {
+                  if (response.status) {
+                    if (payment === "cod") {
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener("mouseenter", Swal.stopTimer);
+                          toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        },
+                      });
+
+                      Toast.fire({
+                        icon: "success",
+                        title: "Order placed",
+                      });
+                      window.location.href = "/invoice";
+                      // Add INVOICE Page here
+                    }
+
+                    if (payment === "online") {
+                      const order_id = response.order.id;
+                      const amount = response.order.amount;
+                      const currency = response.order.currency;
+
+                      const options = {
+                        key: "rzp_test_057G31BnuQVAyS",
+                        amount,
+                        currency,
+                        name: "HOSO",
+                        description: "Test Transaction",
+                        // image: "https://127.0.0.1:3000/images/logo.png",
+                        order_id,
+                        handler: function (response) {
+
+                          $.ajax({
+                            method: "POST",
+                            url: "/verify-payment",
+                            data: {
+                              signature: response.razorpay_signature,
+                              order_id: response.razorpay_order_id,
+                              payment_id: response.razorpay_payment_id,
+                            },
+                            success: (response) => {
+                              if (response.status) {
+
+                                const Toast = Swal.mixin({
+                                  toast: true,
+                                  position: "top-end",
+                                  showConfirmButton: false,
+                                  timer: 3000,
+                                  timerProgressBar: true,
+                                  didOpen: (toast) => {
+                                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                                    toast.addEventListener(
+                                      "mouseleave",
+                                      Swal.resumeTimer
+                                    );
+                                  },
+                                });
+
+                                Toast.fire({
+                                  icon: "success",
+                                  title: "Order placed",
+                                });
+                                window.location.href = "/invoice";
+                              } else {
+                                Swal.fire({
+                                  icon: "error",
+                                  title: "Something went wrong, Payment verification failed !",
+                                });
+                              }
+                            }
+                          });
+
+                          // Add INVOICE Page here
+                        },
+
+                        prefill: {
+                          name: response.user.name,
+                          email: response.user.email,
+                          contact: response.user.contactNumber,
+                        },
+                        notes: {
+                          address: "Razorpay Corporate Office",
+                        },
+                        theme: {
+                          color: "#000",
+                        },
+                      };
+                      var rzp1 = new Razorpay(options);
+
+
+                      rzp1.on("payment.failed", function (response) {
+                        console.error(response.error.code);
+                        console.error(response.error.description);
+                        console.error(response.error.source);
+                        console.error(response.error.step);
+                        console.error(response.error.reason);
+                        console.error(response.error.metadata.order_id);
+                        console.error(response.error.metadata.payment_id);
+                        Swal.fire({
+                          icon: "error",
+                          title: "Something went wrong !",
+                        });
+                      });
+
+                      // Open Payment portal
+                      rzp1.open();
+                    }
+                    if (payment === "wallet") {
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener("mouseenter", Swal.stopTimer);
+                          toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        },
+                      });
+
+                      Toast.fire({
+                        icon: "success",
+                        title: "Order placed",
+                      });
+                      window.location.href = "/invoice";
+
+                    }
+                  } else {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: response.message || `Something went wrong !`,
+                    });
+                  }
+                },
+              });
+            } catch (err) {
+              console.log(err);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `Something went wrong !`,
+              });
+            }
+          }
+        </script>
+
+        <!-- Partner Logo Section Begin -->
+
+        <!-- Partner Logo Section End -->
+
+        <!-- Footer Section Begin -->
+        <%-include('partial/user-footer.ejs') %>
+          <!-- Footer Section End -->
+
+          <!-- Js Plugins -->
+          <script src="js/jquery-3.3.1.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/jquery-ui.min.js"></script>
+          <script src="js/jquery.countdown.min.js"></script>
+          <script src="js/jquery.nice-select.min.js"></script>
+          <script src="js/jquery.zoom.min.js"></script>
+          <script src="js/jquery.dd.min.js"></script>
+          <script src="js/jquery.slicknav.js"></script>
+          <script src="js/owl.carousel.min.js"></script>
+          <script src="js/main.js"></script>
 </body>
 
 </html>

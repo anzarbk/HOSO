@@ -6,6 +6,11 @@ const fs = require("fs");
 const multerStorage = multer.memoryStorage();
 const ProductModel = require("../model/product");
 const categoryDetails = require("../model/category");
+const { findById } = require("../model/category");
+const category = require("../model/category");
+
+const roundOff = (num) => Math.round(num * 100) / 100;
+
 //###############  Multer setup  #####################
 
 const multerFilter = (req, file, cb) => {
@@ -31,35 +36,40 @@ exports.uploadProductPic = upload.fields([
 ]);
 exports.resizeProductPic = async (req, res, next) => {
   //Validations
-  if (!req.files.thumbnail || !req.files.images) return next();
+  console.log(req.files);
+  if (!req.files.thumbnail && !req.files.images) return next();
 
   // Get the thumbnail
-  req.body.thumbnail = `product-${Date.now()}-thumb.jpeg`;
+  if (req.files.thumbnail) {
+    req.body.thumbnail = `product-${Date.now()}-thumb.jpeg`;
 
-  await sharp(req.files.thumbnail[0].buffer)
-    .resize(450, 450)
-    .toFormat("jpeg")
-    .jpeg({
-      quality: 90,
-    })
-    .toFile(`public/images/products/${req.body.thumbnail}`);
+    await sharp(req.files.thumbnail[0].buffer)
+      .resize(450, 450)
+      .toFormat("jpeg")
+      .jpeg({
+        quality: 90,
+      })
+      .toFile(`public/images/products/${req.body.thumbnail}`);
+  }
 
   // Get the images array
-  req.body.images = [];
-  await Promise.all(
-    req.files.images.map(async (el, i) => {
-      const filename = `product-${Date.now()}-${i + 1}-image.jpeg`;
-      await sharp(req.files.images[i].buffer)
-        .resize(450, 450)
-        .toFormat("jpeg")
-        .jpeg({
-          quality: 90,
-        })
-        .toFile(`public/images/products/${filename}`);
+  if (req.files.images) {
+    req.body.images = [];
+    await Promise.all(
+      req.files.images.map(async (el, i) => {
+        const filename = `product-${Date.now()}-${i + 1}-image.jpeg`;
+        await sharp(req.files.images[i].buffer)
+          .resize(450, 450)
+          .toFormat("jpeg")
+          .jpeg({
+            quality: 90,
+          })
+          .toFile(`public/images/products/${filename}`);
 
-      req.body.images.push(filename);
-    })
-  );
+        req.body.images.push(filename);
+      })
+    );
+  }
   next();
 };
 //###################  PRODUCTS  ###########################
@@ -90,27 +100,38 @@ exports.deleteProduct = async (req, res) => {
 };
 exports.editProduct = async (req, res) => {
   const id = req.query.id;
-  const data = req.body;
-  const result = await validateProduct(data, null);
+  const data = { ...req.body };
+  const result = await validateProduct(data);
   if (result !== "success") {
     res.locals.message = result;
     const categoryDetails = await Category.find({});
     const Product = await ProductModel.findOne({ _id: id });
     return res.render("admin/product-edit", { Product, categoryDetails });
   }
+
+  const category = await Category.findById(data.categories);
+
+  // Data refining
+  data.price = parseFloat(data.price);
+  data.quantity = parseInt(data.quantity, 10);
+  data.discount = parseFloat(data.discount);
+  const catDiscount = parseFloat(category.discount);
+  const maxDiscount = Math.max(catDiscount, data.discount);
+
   await ProductModel.updateOne(
     { _id: id },
     {
       $set: {
-        product_name: data.prodname, //
-        category: data.categories, //
-        price: data.price, //
-        quantity: data.quantity, //
-        thumbnail: data.thumbnail, //
-        images: data.images, //
-        size: data.size, //
-        color: data.color, //
-        description: data.description, //
+        product_name: data.prodname,
+        category: data.categories,
+        price: data.price,
+        quantity: data.quantity,
+        thumbnail: data.thumbnail,
+        images: data.images,
+        size: data.size,
+        discount: maxDiscount,
+        color: data.color,
+        description: data.description,
         tag: data.tag,
       },
     }
@@ -126,15 +147,26 @@ exports.addingProduct = async (req, res) => {
     res.locals.categoryDetails = await Category.find({});
     return res.render("admin/product-add");
   }
+  const category = await Category.findById(data.categories);
+
+  // Data refining
+  data.price = parseFloat(data.price);
+  data.quantity = parseInt(data.quantity, 10);
+  data.discount = parseFloat(data.discount);
+
+  // Getting
+  const catDiscount = parseFloat(category.discount);
+  const maxDiscount = Math.max(catDiscount, data.discount);
+
   await Product.create({
     product_name: data.prodname,
     category: data.categories,
     images: data.images,
     thumbnail: data.thumbnail,
     price: data.price,
-    // brand: data.brand,
     color: data.color,
     size: data.size,
+    discount: maxDiscount,
     description: data.description,
     quantity: data.quantity,
     tag: data.tag,
@@ -144,12 +176,10 @@ exports.addingProduct = async (req, res) => {
 
 //###################################
 
-const validateProduct = async (data, name) => {
+const validateProduct = async (data) => {
   console.log(data);
   try {
     if (
-      // !data.images ||
-      // !data.thumbnail ||
       !data.prodname ||
       !data.categories ||
       !data.description ||
@@ -157,24 +187,29 @@ const validateProduct = async (data, name) => {
       !data.size ||
       !data.price ||
       !data.quantity ||
-      !data.group_tag
+      !data.tag
     ) {
       return "Fill all the fields";
     }
 
-    if (name) {
-      const product = await Product.findOne({
-        product_name: name,
-      });
-      if (product) {
-        return "product already exist";
-      }
-    }
+    // if (name) {
+    //   const product = await Product.findOne({
+    //     product_name: name,
+    //   });
+    //   if (product) {
+    //     return "product already exist";
+    //   }
+    // }
 
     return "success";
   } catch (err) {
     console.log(err);
     return "Something went wrong !";
-    
   }
+};
+
+exports.ProductInfo = async (req, res) => {
+  const productId = req.body.id;
+  const product = await Product.findOne({ _id: productId });
+  res.render("admin/product-detail", { product });
 };

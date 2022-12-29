@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar ec-sidebar-footer">
 
         <div class="ec-brand">
-            <a href="index.html" title="Ekka">
+            <a href="/admin" title="Ekka">
                 <img class="ec-brand-icon" src="" alt="" />
                 <span class="ec-brand-name text-truncate">HOSO</span>
             </a>
@@ -14,7 +14,7 @@
             <ul class="nav sidebar-inner" id="sidebar-menu">
                 <!-- Dashboard -->
                 <li class="active">
-                    <a class="sidenav-item-link" href="index.html">
+                    <a class="sidenav-item-link" href="/admin">
                         <i class="mdi mdi-view-dashboard-outline"></i>
                         <span class="nav-text">Dashboard</span>
                     </a>
@@ -25,53 +25,28 @@
                
                 <!-- Users -->
                 <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
+                    <a class="sidenav-item-link" href="/admin/user-list">
                         <i class="mdi mdi-account-group"></i>
-                        <span class="nav-text">Users</span> <b class="caret"></b>
+                        <span class="nav-text">Users</span></b>
                     </a>
-                    <div class="collapse">
-                        <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
-                            <li class="">
-                                <a class="sidenav-item-link" href="/admin/user-list">
-                                    <span class="nav-text">User List</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="/admin/user-profile">
-                                    <span class="nav-text">Users Profile</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <hr>
                 </li>
 
                 <!-- Category -->
                 <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
+                    <a class="sidenav-item-link" href="/admin/main-category">
                         <i class="mdi mdi-dns-outline"></i>
-                        <span class="nav-text">Categories</span> <b class="caret"></b>
+                        <span class="nav-text">Categories</span> </b>
                     </a>
-                    <div class="collapse">
-                        <ul class="sub-menu" id="categorys" data-parent="#sidebar-menu">
-                            <li class="">
-                                <a class="sidenav-item-link" href="/admin/main-category">
-                                    <span class="nav-text">Main Category</span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
+                   
                 </li>
 
                 <!-- Products -->
                 <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
+                    <a class="sidenav-item-link" href="/admin/product-list">
                         <i class="mdi mdi-palette-advanced"></i>
-                        <span class="nav-text">Products</span> <b class="caret"></b>
+                        <span class="nav-text">Products</span></b>
                     </a>
-                    <div class="collapse">
+                    <!-- <div class="collapse">
                         <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
                             <li class="">
                                 <a class="sidenav-item-link"  href="/admin/addingprod">
@@ -89,44 +64,33 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </li>
 
                 <!-- Orders -->
                 <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
+                    <a class="sidenav-item-link" href="/admin/order-list">
                         <i class="mdi mdi-cart"></i>
-                        <span class="nav-text">Orders</span> <b class="caret"></b>
+                        <span class="nav-text">Orders</span></b>
                     </a>
-                    <div class="collapse">
-                        <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
-                            <li class="">
-                                <a class="sidenav-item-link" href="new-order.html">
-                                    <span class="nav-text">New Order</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="order-history.html">
-                                    <span class="nav-text">Order History</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="order-detail.html">
-                                    <span class="nav-text">Order Detail</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="invoice.html">
-                                    <span class="nav-text">Invoice</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="/admin/list-coupon">
+                        <i class="mdi mdi-star-half"></i>
+                        <span class="nav-text">Coupon</span></b>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="/admin/list-banner">
+                        <i class="mdi mdi-star-half"></i>
+                        <span class="nav-text">Banner</span></b>
+                    </a>
+                    
                 </li>
 
                 <!-- Reviews -->
                 <li>
-                    <a class="sidenav-item-link" href="review-list.html">
+                    <a class="sidenav-item-link" href="/admin/review">
                         <i class="mdi mdi-star-half"></i>
                         <span class="nav-text">Reviews</span>
                     </a>

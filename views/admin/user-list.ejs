@@ -53,9 +53,7 @@
 							</p>
 						</div>
 						<div>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#addUser"> Add User
-							</button>
+							
 						</div>
 					</div>
 					<div class="row">
@@ -63,14 +61,14 @@
 							<div class="ec-vendor-list card card-default">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="responsive-data-table" class="table">
+										<table id="mytable_id" class="table">
 											<thead>
 												<tr>
 													<th>Profile</th>
 													<th>Name</th>
 													<th>Email</th>
 													<th>Phone</th>
-													<th>Total Buy</th>
+													
 													<th>Status</th>
 													<th>Join On</th>
 													<th>Action</th>
@@ -80,16 +78,16 @@
 											<tbody>
 												<tr>
 													<td><img class="vendor-thumb" src="/assets/img/vendor/u1.jpg" alt="user profile" /></td>
-													<td><%= users.username  %> </td>
+													<td><%= users.name  %> </td>
 													<td><%= users.email %></td>
-													<td><%= users.phone %></td>
-													<td>2161</td>
+													<td><%= users.contactNumber %></td>
+													
 													<td><% if(users.isBlocked){ %>
 													BLOCKED 
 												    <% } else{ %> 
 													ACTIVE 
 												<% } %> </td>
-													<td>2021-10-30</td>
+													<td><%= users.createdAt.toLocaleDateString() %></td>
 													<td>
 														<% if (users.isBlocked){ %>
 															<a class="btn btn-success" href="/admin/userUnBlock/<%=users._id  %> " style="height:40px; width:100px; background-color:green; border-radius:0; color:white" >UnBlock</a>
@@ -199,7 +197,7 @@
 				<div class="copyright bg-white">
 					<p>
 						Copyright &copy; <span id="ec-year"></span><a class="text-primary"
-							href="https://themeforest.net/user/ashishmaraviya" target="_blank"> WEARWELL Admin
+							href="https://themeforest.net/user/ashishmaraviya" target="_blank"> HOSO
 							Dashboard</a>. All Rights Reserved.
 					</p>
 				</div>
@@ -227,6 +225,43 @@
 
 	<!-- Ekka Custom -->
 	<script src="/assets/js/ekka.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#mytable_id').DataTable({
+                search: true,
+                paging: true,
+                order: [[3, 'desc'], [0, 'asc']],
+                dom: 'lBfrtip',
+                buttons: [
+                    { extend: 'copy', className: 'btn btn-primary glyphicon glyphicon-duplicate' },
+                    { extend: 'csv', className: 'btn btn-primary glyphicon glyphicon-save-file' },
+                    { extend: 'excel', className: 'btn btn-primary glyphicon glyphicon-list-alt' },
+                    { extend: 'pdf', className: 'btn btn-primary glyphicon glyphicon-file' },
+                    { extend: 'print', className: 'btn btn-primary glyphicon glyphicon-print' }
+                ]
+            });
+        });
+    </script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
 </body>
 
 </html>
